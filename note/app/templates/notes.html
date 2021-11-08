@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+
+  <div class="col-lg-9">
+    <h1 class="text-center">All notes</h1>
+    <h6 class="text-center">you will find your notes here</h6>
+
+
+    <ul class="list-group">
+      {% for note in notes %}
+      <li class="list-group-item">
+        <a href="{{ url_for('main.show_notes',id=note.id) }}">{{ note.title }}</a>
+        <p>{{ note.ts_creation }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+</div>
+{% endblock %}

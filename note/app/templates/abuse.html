@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+
+  <div class="col-lg-4 col-md-6 col-sm-10">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-danger mb-2">
+            {{ messages[0] }}</a>
+        </div>
+    {% endif %}
+    {% endwith %}
+    <form method="POST">
+        <h1 class="h3 mb-3 text-center">Report an abuse</h1>
+        <input type="text" id="inputUrl" name="url" class="form-control mb-1" placeholder="http://..." required="" autofocus="">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form>
+</div>
+
+</div>
+{% endblock %}

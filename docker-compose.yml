@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  telegrambotclient:
+    build: ./telegram_bot_client
+    ports:
+      - "8080:8080"
+  bot:
+    build: ./bot
+    environment:
+      - URL_TELEGRAM_CLIENT=http://telegrambotclient:8080
+      - TOKEN=2076003641:AAE2rI8UwX9ia00i1EPw6nrG3Dvi2Quouwc
+      - URL_NOTE=http://note:8080
+      - EMAIL_NOTE=admin@m0lecon.it
+      - PASSWORD_NOTE=OB7DJ7BS69R4TsJZvZdf
+  note:
+    build: ./note
+    ports:
+      - "8081:8080"
+    environment:
+      - BOT_URL=http://bot:9999/visit
+      - EMAIL_NOTE=admin@m0lecon.it
+      - PASSWORD_NOTE=OB7DJ7BS69R4TsJZvZdf

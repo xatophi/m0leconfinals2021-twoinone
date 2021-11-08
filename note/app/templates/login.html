@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center mx-3">
+    <div class="col-lg-4 col-md-6 col-sm-10">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger mb-2">
+                {{ messages[0] }}.</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form action="/login" method="POST">
+            <h1 class="h3 mb-3 text-center">Login</h1>
+            <input type="email" id="inputEmail" name="email" class="form-control mb-1" placeholder="Email" required="" autofocus="">
+            <input type="password" id="inputPassword" name="password" class="form-control mb-2" placeholder="Password" required="">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

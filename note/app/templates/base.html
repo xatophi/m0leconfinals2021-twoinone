@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Notes</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <div class="container">
+      <a class="navbar-brand" href="/">Notes</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('main.show_notes')}}">
+              My notes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('main.add_note')}}">
+              Add note
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">
+                Logout
+            </a>
+          </li>
+          {% endif %}
+          {% if not current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.login') }}">
+                Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.signup') }}">
+                Signup
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+
+  <div style="position: absolute; bottom: 0;  width:100%;" class="d-flex justify-content-center">
+    <a  href="/abuse" class="mx-auto">Report abuse</a>
+  </div>
+  
+  <!-- Bootstrap core JavaScript--> 
+  <script src="/static/js/jquery-3.3.1.slim.min.js" nonce="{{ csp_nonce() }}"></script>
+  <script src="/static/js/popper.min.js" nonce="{{ csp_nonce() }}"></script>
+  <script src="/static/js/bootstrap.min.js" nonce="{{ csp_nonce() }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="row justify-content-center mx-3">
+    <div class="col-lg-4 col-md-6 col-sm-10">
+        {% if not messages %}
+            No new messages
+        {% endif %}
+
+        {% for msg in messages %}
+            <li class="list-group-item"> {{ msg['handle'] }} , {{ msg['text'] | safe }}</li>
+        {% endfor %}
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+{% endblock %}

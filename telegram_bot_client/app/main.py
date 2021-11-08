@@ -60,7 +60,8 @@ def messages():
         return render_template('messages.html',messages=msgs)
 
     else:
-        return 'error', 500
+        flash('Something went wrong')
+        return render_template('messages.html',messages=[])
 
 
 @main.route('/contacts',methods=['GET'])
@@ -86,13 +87,6 @@ def locations():
         if search:
             cont = Contact.query.filter(Contact.bot_id == current_user.id ,Contact.handle.startswith(search), Contact.longitude.is_not(None), Contact.latitude.is_not(None)).all()
             return render_template('locations.html',contacts=cont)
-
            
     cont = Contact.query.filter(Contact.bot_id == current_user.id ,Contact.longitude.is_not(None), Contact.latitude.is_not(None)).all()
     return render_template('locations.html',contacts=cont)
-
-
-@main.route('/404')
-@login_required
-def error():
-    return 'not found', 404

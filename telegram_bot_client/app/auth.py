@@ -32,7 +32,7 @@ def login_post():
         # first time, signup bot
 
         if not is_token_safe(token):
-            flash('Invalid token format')
+            flash('Invalid token format','error')
             return redirect(url_for('auth.login')) 
 
         # contact telegram api to check if is a valid token
@@ -62,7 +62,7 @@ def login_post():
             resp = make_response(redirect(url_for('main.index')))
             return resp
         else:
-            flash('Invalid token')
+            flash('Invalid token','error')
             return redirect(url_for('auth.login'))
 
     else:

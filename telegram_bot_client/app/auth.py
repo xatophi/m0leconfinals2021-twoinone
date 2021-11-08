@@ -17,19 +17,6 @@ def is_token_safe(token):
         return True
     return False
 
-
-#def login_required(f):
-#    @wraps(f)
-#    def decorated_function(*args, **kwargs):
-#        if 'bot_token' in request.cookies:
-#            token = request.cookies['bot_token']
-#            if is_token_safe(token):
-#                g.bot_token = token
-#                return f(*args, **kwargs)    
-#        return redirect(url_for('auth.login'))
-#        
-#    return decorated_function
-
 @auth.route('/login', methods=['GET'])
 def login():
     return render_template('login.html')

@@ -18,7 +18,7 @@
             <input type="text" id="inputToken" name="bot_token" class="form-control mb-1" placeholder="Token" required="" autofocus="">
             <input type="text" id="inputLatitude" name="latitude" class="form-control mb-1" placeholder="Latitude (optional)">
             <input type="text" id="inputLongitude" name="longitude" class="form-control mb-1" placeholder="Longitude (optional)">
-
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
             <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Submit</button>
         </form>
     </div>

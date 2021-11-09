@@ -12,6 +12,7 @@ db = SQLAlchemy()
 
 def visit_url(url):
     if url and url.startswith('http'):
+        # send the request to the bot to visit
         r = requests.post(os.environ['BOT_URL'],json={'url':url})
         if r:
             return True

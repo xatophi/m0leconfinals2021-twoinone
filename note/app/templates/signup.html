@@ -4,13 +4,6 @@
 
 <div class="row justify-content-center mx-3">
     <div class="col-lg-4 col-md-6 col-sm-10">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="alert alert-danger mb-2">
-                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
-            </div>
-        {% endif %}
-        {% endwith %}
         <form action="/signup" method="POST">
             <h1 class="h3 mb-3 text-center">Signup</h1>
             <input type="email" id="inputEmail" name="email" class="form-control mb-1" placeholder="Email" required="" autofocus="">

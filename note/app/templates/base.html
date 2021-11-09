@@ -60,6 +60,25 @@
 
   <!-- Page Content -->
   <div class="container">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="row justify-content-center">
+
+        <div class="col-lg-4 col-md-6 col-sm-10">
+          {% for category, message in messages %}
+            
+              <div class="alert {% if category=='success' %}alert-success{% else %}alert-danger{% endif %} mb-2 text-center">
+                  {{ message }}
+              </div>
+          
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endif %}
+    {% endwith %}
+    
     {% block content %}
     {% endblock %}
   </div>

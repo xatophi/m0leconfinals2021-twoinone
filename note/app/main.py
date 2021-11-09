@@ -23,7 +23,8 @@ def show_notes():
         if note:
             return render_template('note.html',note=note)
         else:
-            return 'Not found', 404
+            flash('Note not found','error')
+            return redirect(url_for('main.show_notes'))
 
 @main.route('/add_note', methods=['GET','POST'])
 @login_required
@@ -38,7 +39,7 @@ def add_note():
             db.session.commit()
             return redirect(url_for('main.show_notes'))
         else:
-            flash('Invalid data')
+            flash('Invalid data','error')
             
     return render_template('add_note.html')
 
@@ -51,10 +52,10 @@ def report_abuse():
 
         if url and url.startswith('http'):
             if visit_url(url):
-                return 'ok'
+                flash('Visited','success')
             else:
-                return 'something is wrong', 500
+                flash('something is wrong', 'error')
         else:
-            flash('Invalid data')
+            flash('Invalid data','error')
             
     return render_template('abuse.html')

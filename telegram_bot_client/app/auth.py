@@ -16,6 +16,7 @@ def login():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
+
     token = request.form.get('bot_token')
 
     latitude = None
@@ -73,7 +74,7 @@ def login_post():
             cont.latitude = latitude
             cont.longitude = longitude
             db.session.commit()
-        
+            
         login_user(bot)
         return redirect(url_for('main.index'))
 

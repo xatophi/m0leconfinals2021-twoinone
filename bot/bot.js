@@ -26,41 +26,23 @@ async function visit(url) {
 	// Authenticate
 	let page = await browser.newPage()
     await page.setDefaultNavigationTimeout(TIMEOUT);
-
-	await page.setRequestInterception(true)
-	page.once('request', request => {
-
-        if (request.url() == URL_TELEGRAM_LOGIN){
-            let payload = 'bot_token=' + encodeURIComponent(TOKEN) + '&latitude=45.06244678071925&longitude=7.662078652110826'
-            let data = {
-                method: 'POST',
-                postData: payload,
-                headers: {
-                    ...request.headers(),
-                    "Content-Type": "application/x-www-form-urlencoded"
-                }
-            }
-            //console.log('____________')
-            //console.log(request.url())
-            request.continue(data)
-        } else  {
-            request.continue()
-        }
-	})
 	
 	try{
         //authenticate on telegram_bot_client
 		await page.goto(URL_TELEGRAM_LOGIN)
-        /*
+        
         await page.waitForSelector('#inputToken')
         await page.focus('#inputToken')
         await page.keyboard.type(TOKEN, {delay: 10})
+        await page.focus('#inputLatitude')
+        await page.keyboard.type(LATITUDE, {delay: 10})
+        await page.focus('#inputLongitude')
+        await page.keyboard.type(LONGITUDE, {delay: 10})
         await page.click('#submit')
 
         await page.waitForNavigation({waitUntil: 'networkidle2'});
-        */
-        page.removeAllListeners();
-        await page.setRequestInterception(false)
+        
+        //console.log(URL_TELEGRAM_LOGIN)
         //console.log(await page.cookies())
 
         //authenticate on note
@@ -72,8 +54,11 @@ async function visit(url) {
         await page.keyboard.type(PASSWORD_NOTE, {delay: 10})
         await page.click('#submit')
 
+        await page.waitForNavigation({waitUntil: 'networkidle2'});
+        
         //console.log(await page.cookies())
-		// Contacting URL after auth
+		
+        // Contacting URL after auth
         //console.log(url)
 		await page.goto(url)
 

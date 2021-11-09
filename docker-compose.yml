@@ -3,7 +3,7 @@ services:
   telegrambotclient:
     build: ./telegram_bot_client
     ports:
-      - "8080:8080"
+      - "127.0.0.1::8080"
   bot:
     build: ./bot
     environment:
@@ -15,7 +15,7 @@ services:
   note:
     build: ./note
     ports:
-      - "8081:8080"
+      - "127.0.0.1::8080"
     environment:
       - BOT_URL=http://bot:9999/visit
       - EMAIL_NOTE=admin@m0lecon.it

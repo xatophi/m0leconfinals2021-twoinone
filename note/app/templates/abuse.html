@@ -7,7 +7,8 @@
   <div class="col-lg-4 col-md-6 col-sm-10">
     <form method="POST">
         <h1 class="h3 mb-3 text-center">Report an abuse</h1>
-        <input type="text" id="inputUrl" name="url" class="form-control mb-1" placeholder="http://..." required="" autofocus="">
+        <input type="text" id="inputUrl" name="url" class="form-control mb-1" placeholder="https://..." required="" autofocus="">
+        <input type="text" id="inputToken" name="token" class="form-control mb-1" placeholder="team token" required="">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form>

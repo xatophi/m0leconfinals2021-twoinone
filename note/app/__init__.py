@@ -6,18 +6,8 @@ from flask_wtf.csrf import CSRFProtect
 from datetime import datetime
 from werkzeug.security import generate_password_hash
 import os
-import requests
 
 db = SQLAlchemy()
-
-def visit_url(url):
-    if url and url.startswith('http'):
-        # send the request to the bot to visit
-        r = requests.post(os.environ['BOT_URL'],json={'url':url})
-        if r:
-            return True
-        else:
-            return False
 
 def create_app():
     app = Flask(__name__)

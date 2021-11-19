@@ -70,7 +70,7 @@ def contacts():
     search = request.args.get('search')
     
     if search:
-        cont = Contact.query.filter(Contact.bot_id == current_user.id, Contact.handle.startswith(search)).all()
+        cont = Contact.query.filter(Contact.bot_id == current_user.id, Contact.handle.startswith(search,autoescape=True)).all()
         return render_template('contacts.html',contacts=cont)
         
     cont = current_user.contacts 
@@ -85,7 +85,7 @@ def locations():
         search = request.args.get('search')
         
         if search:
-            cont = Contact.query.filter(Contact.bot_id == current_user.id ,Contact.handle.startswith(search), Contact.longitude.is_not(None), Contact.latitude.is_not(None)).all()
+            cont = Contact.query.filter(Contact.bot_id == current_user.id ,Contact.handle.startswith(search,autoescape=True), Contact.longitude.is_not(None), Contact.latitude.is_not(None)).all()
             return render_template('locations.html',contacts=cont)
            
     cont = Contact.query.filter(Contact.bot_id == current_user.id ,Contact.longitude.is_not(None), Contact.latitude.is_not(None)).all()

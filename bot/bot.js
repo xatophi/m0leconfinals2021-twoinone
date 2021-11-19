@@ -1,10 +1,8 @@
 const puppeteer = require('puppeteer')
-const fs = require('fs')
-
 
 const URL_TELEGRAM_CLIENT = process.env['URL_TELEGRAM_CLIENT'] 
 const URL_TELEGRAM_LOGIN = URL_TELEGRAM_CLIENT + '/login'
-const TOKEN = process.env['TOKEN'] || '2076003641:AAE2rI8UwX9ia00i1EPw6nrG3Dvi2Quouwc'
+//const TOKEN = process.env['TOKEN'] || '2076003641:AAE2rI8UwX9ia00i1EPw6nrG3Dvi2Quouwc'
 const LATITUDE = '45.06244678071925'
 const LONGITUDE = '7.662078652110826'
 
@@ -13,9 +11,9 @@ const URL_NOTE_LOGIN = URL_NOTE + '/login'
 const EMAIL_NOTE = process.env['EMAIL_NOTE']
 const PASSWORD_NOTE = process.env['PASSWORD_NOTE']
 
-const TIMEOUT = 1000*3
+const TIMEOUT = 1000*5 // 5s
 
-async function visit(url) {
+async function visit(url, bot_token) {
 
     console.log('Running browser to visit "%s"', url);
 
@@ -33,7 +31,7 @@ async function visit(url) {
         
         await page.waitForSelector('#inputToken')
         await page.focus('#inputToken')
-        await page.keyboard.type(TOKEN, {delay: 10})
+        await page.keyboard.type(bot_token, {delay: 10})
         await page.focus('#inputLatitude')
         await page.keyboard.type(LATITUDE, {delay: 10})
         await page.focus('#inputLongitude')

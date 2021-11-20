@@ -10,18 +10,15 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt 
 
 COPY app/ ./app
-RUN rm app/db/db.sqlite && chown appuser:appgroup app/db
+RUN rm -r app/db; mkdir app/db && chown appuser:appgroup app/db
 
 USER appuser
-
 
 ENV EMAIL_NOTE=admin@m0lecon.it
 ENV PASSWORD_NOTE=OB7DJ7BS69R4TsJZvZdf
 
 RUN flask create-db
 
-
 EXPOSE 8080/tcp
 
-
-CMD gunicorn -w 4 --bind :8080 "app:create_app()" --user appuser --group appgroup
+CMD export SECRET_KEY=$(cat /dev/urandom | base64 | head -c 30) && gunicorn -w 4 --bind :8080 "app:create_app()" --user appuser --group appgroup

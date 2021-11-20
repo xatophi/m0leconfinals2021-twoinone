@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
+import os
 
 db = SQLAlchemy()
 
@@ -11,7 +12,7 @@ def create_app():
     app = Flask(__name__)
     csrf = CSRFProtect(app)
 
-    app.config['SECRET_KEY'] = b'\xc71\xe5\xc3\xea\x16\r\x9b\xac\xe7\xc5\xe5\xea\xde8m'
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/db.sqlite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SESSION_COOKIE_NAME'] = "telegram_session"

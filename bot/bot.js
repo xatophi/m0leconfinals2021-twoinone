@@ -18,8 +18,21 @@ async function visit(url, bot_token) {
     console.log('Running browser to visit "%s"', url);
 
 	const browser = await puppeteer.launch({ 
-        args: ['--no-sandbox'],
-        executablePath: '/usr/bin/chromium'})
+        headless: true,
+        args: [
+            '--disable-default-apps',
+            '--disable-extensions',
+            '--disable-gpu',
+            '--disable-sync',
+            '--disable-translate',
+            '--hide-scrollbars',
+            '--metrics-recording-only',
+            '--mute-audio',
+            '--no-first-run',
+            '--no-sandbox',
+            '--safebrowsing-disable-auto-update'
+        ],
+        executablePath: '/usr/bin/google-chrome'})
 
 	// Authenticate
 	let page = await browser.newPage()

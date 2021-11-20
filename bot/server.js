@@ -40,7 +40,7 @@ app.post('/visit', async function (req, res) {
 	if ((ts - last_visit) < RATE_LIMIT){
 		console.log('Rate limit');
 		res.status(400);
-		res.send(`Please wait ${(RATE_LIMIT - (ts-last_visit))/1000}s and retry`);
+		res.send(`Please wait ${Math.round((RATE_LIMIT - (ts-last_visit))/1000)}s and retry`);
 		return;
 	}
 

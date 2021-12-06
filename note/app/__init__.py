@@ -31,7 +31,7 @@ def create_app():
         db.session.flush()
         db.session.refresh(user)
 
-        note = Note(user_id=user.id, title='Flag', text='ptm{test_flag}', ts_creation=datetime.now())
+        note = Note(user_id=user.id, title='Flag', text='ptm{For3ign_c00kie5_t4st3_b4d}', ts_creation=datetime.now())
         db.session.add(note)
         
         db.session.commit()

